@@ -1,24 +1,32 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
     Container,
     TextField,
     Typography,
     Button,
-    Paper
+    Paper,
+    Card,
+    CardContent,
+    Alert
 } from "@mui/material";
 
 import { createBooking } from "../services/bookingService";
 
 function Booking() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const selectedPackage = location.state?.package || null;
 
     const [booking, setBooking] = useState({
-        eventTypeId: 1,
-        packageId: 1,
+        eventTypeId: selectedPackage?.eventTypeId || selectedPackage?.eventType?.id || "",
+        packageId: selectedPackage?.id || "",
         eventDate: "",
         guests: "",
         venue: "",
         specialRequest: "",
-        totalAmount: 50000
+        totalAmount: selectedPackage?.price || 0
     });
 
     const handleChange = (e) => {
@@ -32,23 +40,40 @@ function Booking() {
         e.preventDefault();
 
         try {
-            const result = await createBooking(booking);
+            const result = await createBooking({
+                ...booking,
+                eventTypeId: Number(booking.eventTypeId),
+                packageId: Number(booking.packageId),
+                guests: Number(booking.guests),
+                totalAmount: Number(booking.totalAmount)
+            });
 
             alert(result.message);
 
-            setBooking({
-                ...booking,
-                eventDate: "",
-                guests: "",
-                venue: "",
-                specialRequest: ""
-            });
+            navigate("/my-bookings");
         }
         catch (error) {
             console.error(error);
             alert("Booking Failed");
         }
     };
+
+    if (!selectedPackage) {
+        return (
+            <Container maxWidth="sm" sx={{ mt: 5 }}>
+                <Alert severity="warning">
+                    No package selected. Please choose a package first.
+                </Alert>
+                <Button
+                    variant="contained"
+                    sx={{ mt: 3 }}
+                    onClick={() => navigate("/events")}
+                >
+                    Browse Events
+                </Button>
+            </Container>
+        );
+    }
 
     return (
         <Container maxWidth="sm" sx={{ mt: 5 }}>
@@ -63,6 +88,20 @@ function Booking() {
                     Book Event
                 </Typography>
 
+                <Card variant="outlined" sx={{ mb: 3, bgcolor: "grey.50" }}>
+                    <CardContent>
+                        <Typography variant="h6" fontWeight="bold">
+                            {selectedPackage.packageName}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {selectedPackage.eventType?.name}
+                        </Typography>
+                        <Typography variant="h6" color="primary" sx={{ mt: 1 }}>
+                            ₹ {selectedPackage.price}
+                        </Typography>
+                    </CardContent>
+                </Card>
+
                 <form onSubmit={handleSubmit}>
 
                     <TextField
@@ -74,6 +113,7 @@ function Booking() {
                         value={booking.eventDate}
                         onChange={handleChange}
                         InputLabelProps={{ shrink: true }}
+                        required
                     />
 
                     <TextField
@@ -84,6 +124,7 @@ function Booking() {
                         type="number"
                         value={booking.guests}
                         onChange={handleChange}
+                        required
                     />
 
                     <TextField
@@ -93,6 +134,7 @@ function Booking() {
                         name="venue"
                         value={booking.venue}
                         onChange={handleChange}
+                        required
                     />
 
                     <TextField
@@ -110,7 +152,7 @@ function Booking() {
                         sx={{ mt: 2 }}
                         variant="h6"
                     >
-                        Estimated Cost: ₹50,000
+                        Estimated Cost: ₹{booking.totalAmount}
                     </Typography>
 
                     <Button

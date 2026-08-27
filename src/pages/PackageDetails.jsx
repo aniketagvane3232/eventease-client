@@ -41,7 +41,7 @@ function PackageDetails() {
 
     const handleBookNow = () => {
         if (isLoggedIn()) {
-            navigate("/booking");
+            navigate("/booking", { state: { package: pkg } });
         } else {
             alert("Please Login First");
             navigate("/login");

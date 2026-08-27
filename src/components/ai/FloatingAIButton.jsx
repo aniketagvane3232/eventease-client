@@ -36,11 +36,18 @@ function FloatingAIButton() {
         setLoading(true);
 
         try {
-            const response = await fetch("https://localhost:7272/api/AI/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: trimmed }),
-            });
+            const response = await fetch(
+  `${import.meta.env.VITE_API_URL}/AI/chat`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: trimmed,
+    }),
+  }
+);
 
             const data = await response.json();
 

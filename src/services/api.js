@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL:
     import.meta.env.VITE_API_URL ||
-    "https://localhost:7272/api",
+    "https://eventease-server-8vwv.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {

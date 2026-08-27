@@ -86,7 +86,7 @@ function Register() {
                 </Box>
 
                 <Typography align="center" sx={{ mt: 3 }}>
-                    Already have an account? <Link to="/register">Register here</Link>
+                    Already have an account? <Link to="/login">Login here</Link>
                 </Typography>
             </Paper>
         </Container>

@@ -1,16 +1,105 @@
-# React + Vite
+# 🎉 EventEase AI – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> AI-powered event discovery and booking platform built by **Aniket Dada Agvane**.
 
-Currently, two official plugins are available:
+EventEase AI is a modern event booking platform designed to make event discovery, package exploration, and booking easier for users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The platform provides an intuitive and responsive interface where users can explore different event categories, discover event packages, register and log in, and interact with AI-powered assistance.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🌐 Live Demo
 
-## Expanding the Oxlint configuration
+🚀 **Live Application**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### 👉 https://eventease-client.vercel.app/
+
+[Open EventEase AI Live](https://eventease-client.vercel.app/)
+
+---
+
+## 🔗 Project Repositories
+
+### 🎨 Frontend
+
+https://github.com/aniketagvane3232/eventease-client
+
+### ⚙️ Backend
+
+https://github.com/aniketagvane3232/eventease-server
+
+---
+
+# ✨ Features
+
+- 🏠 Modern and responsive home page
+- 🎉 Explore different event categories
+- 💍 Wedding event packages
+- 🎂 Birthday event packages
+- 🏢 Corporate event packages
+- 💖 Anniversary event packages
+- 💍 Engagement event packages
+- 📦 Explore event packages
+- 🔎 Search and discover events
+- 📅 Event booking functionality
+- 📋 Booking management
+- 🔐 User registration
+- 🔑 User login
+- 👤 User profile
+- 🤖 AI-powered EventEase Assistant
+- 📱 Responsive design
+- ⚡ Fast Vite development environment
+- 🎨 Modern Material UI interface
+
+---
+
+# 🤖 AI Assistant
+
+EventEase AI includes an AI-powered assistant designed to help users with event-related information.
+
+The assistant can help users understand:
+
+- Event categories
+- Event packages
+- Package information
+- Event planning
+- Booking-related questions
+- General event-related queries
+
+The goal is to make event discovery and planning more interactive and convenient.
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                         ┌──────────────────────┐
+                         │        USER          │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │   React Frontend     │
+                         │      Vite + UI       │
+                         │   Material UI        │
+                         └──────────┬───────────┘
+                                    │
+                               Axios / REST
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │  ASP.NET Core API    │
+                         │       Backend        │
+                         └──────────┬───────────┘
+                                    │
+                    ┌───────────────┼───────────────┐
+                    │               │               │
+                    ▼               ▼               ▼
+             ┌────────────┐  ┌────────────┐  ┌────────────┐
+             │   Users    │  │   Events   │  │  Bookings  │
+             └────────────┘  └────────────┘  └────────────┘
+                                    │
+                                    ▼
+                              ┌────────────┐
+                              │  Database  │
+                              └────────────┘

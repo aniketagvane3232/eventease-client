@@ -1,4 +1,4 @@
-# 🎉 EventEase AI – Frontend
+# 🎉 EventEase AI 
 
 > AI-powered event discovery and booking platform built by **Aniket Dada Agvane**.
 
